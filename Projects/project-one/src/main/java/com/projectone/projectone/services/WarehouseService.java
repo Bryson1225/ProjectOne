@@ -1,38 +1,54 @@
 package com.projectone.projectone.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.projectone.projectone.models.Warehouse;
 import com.projectone.projectone.repositories.WarehouseRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WarehouseService {
     @Autowired
     WarehouseRepository warehouseRepository;
-    //private final WarehouseRepository warehouseRepository;
-
-    //@Autowired
-    //public WarehouseService(WarehouseRepository warehouseRepository) {
-    //    this.warehouseRepository = warehouseRepository;
-    //}
-
-    //public Warehouse saveWarehouse(Warehouse warehouse) {
-    //    return warehouseRepository.save(warehouse);
-    //}
 
     public List<Warehouse> findAllWarehouses() {
         return warehouseRepository.findAll();
     }
 
-    //public Warehouse getWarehouseById(Long id) {
-    //    return warehouseRepository.findById(id).orElse(null);
-    //}
+    public Warehouse findWarehouseById(int id) {
+        Optional<Warehouse> warehouse = warehouseRepository.findById(id);
+        if (warehouse.isPresent()) {
+            return warehouse.get();
+        }
+        return null;
+    }
 
-    //public void deleteWarehouse(Long id) {
-    //    warehouseRepository.deleteById(id);
-    //}
+    public Warehouse findWarehouseByName(String name) {
+        Optional<Warehouse> warehouse = warehouseRepository.findWarehouseByName(name);
+        if (warehouse.isPresent()) {
+            return warehouse.get();
+        }
+        return null;
+    }
+
+    public List<Warehouse> findWarehouseByLocation(String location) {
+        Optional<List<Warehouse>> warehouse = warehouseRepository.findWarehouseByLocation(location);
+        if (warehouse.isPresent()) {
+            return warehouse.get();
+        }
+        return null;
+    }
+
+    /**
+     * POSTING / PUTTING
+     */
+    
+    public Warehouse createWarehouse(Warehouse warehouse) {
+        return warehouseRepository.save(warehouse);
+    }
 }
 
