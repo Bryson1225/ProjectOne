@@ -1,7 +1,6 @@
 package com.projectone.projectone.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.projectone.projectone.models.Warehouse;
@@ -47,8 +46,14 @@ public class WarehouseService {
      * POSTING / PUTTING
      */
     
+    // Create a new warehouse
     public Warehouse createWarehouse(Warehouse warehouse) {
         return warehouseRepository.save(warehouse);
+    }
+
+    // Update warehouse capacity
+    public int updateCapacity(Warehouse warehouse, int newCapacity) {
+        return warehouseRepository.updateWarehouseCapacity(warehouse.getWarehouseId(), newCapacity);
     }
 }
 

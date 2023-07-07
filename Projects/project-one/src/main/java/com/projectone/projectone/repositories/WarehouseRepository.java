@@ -14,4 +14,5 @@ public interface WarehouseRepository extends JpaRepository<Warehouse, Integer> {
 
     public Optional<Warehouse> findWarehouseByName(String warehouseName);
     public Optional<List<Warehouse>> findWarehouseByLocation(String location);
+    public int updateWarehouseCapacity(long warehouseId, int newapacity);
 }
