@@ -1,9 +1,9 @@
 -- Populate the Warehouse table
 INSERT INTO Warehouse (warehouse_id, warehouse_name, maximum_capacity)
 VALUES
-  (1, 'Warehouse A', 1000),
-  (2, 'Warehouse B', 1500),
-  (3, 'Warehouse C', 800);
+  (1, 'WarehouseA', 1000),
+  (2, 'WarehouseB', 1500),
+  (3, 'WarehouseC', 800);
 
 -- Populate the TireBrand table
 INSERT INTO TireBrand (brand_id, brand_name)
