@@ -1,10 +1,21 @@
 package com.projectone.projectone.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+/*
+ * Class: Warehouse.java
+ * Function: This class represents the Warehouse entity within my database.
+ * 
+ * Instance Variables / Table Column Name
+ *  - warehouseId / warehouse_id
+ *  - warehouseName / warehouse_name
+ *  - maximumCapacity / maximum_capacit
+ */
 
 @Entity
 @Table(name = "WAREHOUSE")
@@ -12,25 +23,29 @@ public class Warehouse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long warehouseId;
+    @Column(name = "warehouse_id")
+    private Integer warehouseId;
 
+    @Column(name = "warehouse_name")
     private String warehouseName;
+
+    @Column(name = "maximum_capacity")
     private Integer maximumCapacity;
     
     public Warehouse() {
     }
 
-    public Warehouse(Long warehouseId, String warehouseName, Integer maximumCapacity) {
+    public Warehouse(Integer warehouseId, String warehouseName, Integer maximumCapacity) {
         this.warehouseId = warehouseId;
         this.warehouseName = warehouseName;
         this.maximumCapacity = maximumCapacity;
     }
 
-    public Long getWarehouseId() {
+    public Integer getWarehouseId() {
         return warehouseId;
     }
 
-    public void setWarehouseId(Long warehouseId) {
+    public void setWarehouseId(Integer warehouseId) {
         this.warehouseId = warehouseId;
     }
 
