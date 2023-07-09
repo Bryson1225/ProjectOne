@@ -54,6 +54,7 @@ public class TireBrandController {
     // Creating a new tirebrand
     @PostMapping("/create-tireBrand")
     public ResponseEntity<TireBrand> createTireBrand(@RequestBody TireBrand tireBrand) {
+        System.out.println("WE ARE HERE");
         TireBrand newTireBrand = tireBrandService.createTireBrand(tireBrand);
         return new ResponseEntity<TireBrand>(newTireBrand, HttpStatus.OK);
     }

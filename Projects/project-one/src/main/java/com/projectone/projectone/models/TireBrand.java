@@ -17,7 +17,7 @@ public class TireBrand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "beand_id")
+    @Column(name = "brand_id")
     private Integer brandId;
 
     @Column(name = "brand_name")
