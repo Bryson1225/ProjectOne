@@ -2,8 +2,9 @@ package com.projectone.projectone.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.projectone.projectone.models.Inventory;
+import com.projectone.projectone.models.TireType;
+import com.projectone.projectone.models.Warehouse;
 import com.projectone.projectone.repositories.InventoryRepository;
 
 import java.util.List;
@@ -16,27 +17,27 @@ public class InventoryService {
     public List<Inventory> getInventory() {
         return inventoryRepository.findAll();
     }
-/*
-    @Autowired
-    public InventoryService(InventoryRepository inventoryRepository) {
-        this.inventoryRepository = inventoryRepository;
+
+    public List<Inventory> findInventoryByWarehouseId(Warehouse warehouseId) {
+        return inventoryRepository.findByWarehouseId(warehouseId);
     }
 
-    public Inventory saveInventory(Inventory inventory) {
-        return inventoryRepository.save(inventory);
+    public List<Inventory> findInventoryByTireType(TireType tireTypeId) {
+        return inventoryRepository.findByTireTypeId(tireTypeId);
     }
 
-    public List<Inventory> getAllInventory() {
-        return inventoryRepository.findAll();
+    public Inventory findInventoryByWarehouseAndTireType(Warehouse warehouseId, TireType tireTypeId) {
+        return inventoryRepository.findByWarehouseIdAndTireTypeId(warehouseId, tireTypeId);
     }
 
-    public Inventory getInventoryById(Inventory.InventoryId id) {
-        return inventoryRepository.findById(id).orElse(null);
+    public List<Inventory> findAvailableInventory() {
+        return inventoryRepository.findByQuantityGreaterThan(0);
     }
 
-    public void deleteInventory(Inventory.InventoryId id) {
-        inventoryRepository.deleteById(id);
+    public List<Inventory> findLowStockInventory() {
+        // Define low stock threshold
+        int lowStockThreshold = 10;
+        return inventoryRepository.findByQuantityLessThan(lowStockThreshold);
     }
-    */
 }
 

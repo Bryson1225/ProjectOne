@@ -1,7 +1,6 @@
 package com.projectone.projectone.models;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -16,19 +15,21 @@ import javax.persistence.Table;
 public class Inventory {
 
     @EmbeddedId
+    @Column(name = "id")
     private InventoryId id;
 
+    @Column(name = "quantity")
     private Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "warehouse_id", insertable = false, updatable = false,
                 foreignKey = @ForeignKey(name = "fk_inventory_warehouse"))
-    private Warehouse warehouse;
+    private Warehouse warehouseId;
 
     @ManyToOne
     @JoinColumn(name = "tire_type_id", insertable = false, updatable = false,
                 foreignKey = @ForeignKey(name = "fk_inventory_tire_type"))
-    private TireType tireType;
+    private TireType tireTypeId;
 
     public Inventory() {
     }
@@ -36,8 +37,8 @@ public class Inventory {
     public Inventory(InventoryId id, Integer quantity, Warehouse warehouse, TireType tireType) {
         this.id = id;
         this.quantity = quantity;
-        this.warehouse = warehouse;
-        this.tireType = tireType;
+        this.warehouseId = warehouse;
+        this.tireTypeId = tireType;
     }
 
     public InventoryId getId() {
@@ -57,19 +58,19 @@ public class Inventory {
     }
 
     public Warehouse getWarehouse() {
-        return warehouse;
+        return warehouseId;
     }
 
     public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
+        this.warehouseId = warehouse;
     }
 
     public TireType getTireType() {
-        return tireType;
+        return tireTypeId;
     }
 
     public void setTireType(TireType tireType) {
-        this.tireType = tireType;
+        this.tireTypeId = tireType;
     }
 
     @Override
@@ -78,8 +79,8 @@ public class Inventory {
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
-        result = prime * result + ((warehouse == null) ? 0 : warehouse.hashCode());
-        result = prime * result + ((tireType == null) ? 0 : tireType.hashCode());
+        result = prime * result + ((warehouseId == null) ? 0 : warehouseId.hashCode());
+        result = prime * result + ((tireTypeId == null) ? 0 : tireTypeId.hashCode());
         return result;
     }
 
@@ -102,22 +103,22 @@ public class Inventory {
                 return false;
         } else if (!quantity.equals(other.quantity))
             return false;
-        if (warehouse == null) {
-            if (other.warehouse != null)
+        if (warehouseId == null) {
+            if (other.warehouseId != null)
                 return false;
-        } else if (!warehouse.equals(other.warehouse))
+        } else if (!warehouseId.equals(other.warehouseId))
             return false;
-        if (tireType == null) {
-            if (other.tireType != null)
+        if (tireTypeId == null) {
+            if (other.tireTypeId != null)
                 return false;
-        } else if (!tireType.equals(other.tireType))
+        } else if (!tireTypeId.equals(other.tireTypeId))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Inventory [id=" + id + ", quantity=" + quantity + ", warehouse=" + warehouse + ", tireType=" + tireType
+        return "Inventory [id=" + id + ", quantity=" + quantity + ", warehouse=" + warehouseId + ", tireType=" + tireTypeId
                 + "]";
     }
 
