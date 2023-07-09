@@ -1,10 +1,15 @@
 package com.projectone.projectone.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+/*
+ * Class: TireBrand.java - This class represents the TireBrand entity within the database.
+ */
 
 @Entity
 @Table(name = "TIREBRAND")
@@ -12,23 +17,25 @@ public class TireBrand {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long brandId;
+    @Column(name = "beand_id")
+    private Integer brandId;
 
+    @Column(name = "brand_name")
     private String brandName;
 
     public TireBrand() {
     }
 
-    public TireBrand(Long brandId, String brandName) {
+    public TireBrand(Integer brandId, String brandName) {
         this.brandId = brandId;
         this.brandName = brandName;
     }
 
-    public Long getBrandId() {
+    public Integer getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Long brandId) {
+    public void setBrandId(Integer brandId) {
         this.brandId = brandId;
     }
 

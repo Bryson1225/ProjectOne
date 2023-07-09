@@ -2,41 +2,53 @@ package com.projectone.projectone.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.projectone.projectone.models.TireBrand;
 import com.projectone.projectone.repositories.TireBrandRepository;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TireBrandService {
     @Autowired
     TireBrandRepository tireBrandRepository;
 
-        public List<TireBrand> findAllBrands() {
+    /*
+     * GET REQUESTS
+     *  - All
+     */
+
+    // Return a list of all tire brands currently in the DB
+    public List<TireBrand> findAllTireBrands() {
         return tireBrandRepository.findAll();
     }
-/*
-    @Autowired
-    public TireBrandService(TireBrandRepository tireBrandRepository) {
-        this.tireBrandRepository = tireBrandRepository;
+
+    // Returns a singular tireBrand given an Id
+    public TireBrand findTireBrandById(int brandId) {
+        Optional<TireBrand> tireBrand = tireBrandRepository.findById(brandId);
+        if (tireBrand.isPresent()) {
+            return tireBrand.get();
+        }
+        return null;
     }
 
-    public TireBrand saveTireBrand(TireBrand tireBrand) {
+    // Returns a singular tireBrand given a name
+    public TireBrand findTireBrandByName(String brandName) {
+        Optional<TireBrand> tireBrand = tireBrandRepository.findBybrandName(brandName);
+        if (tireBrand.isPresent()) {
+            return tireBrand.get();
+        }
+        return null;
+    }
+
+    /*
+     * ADDING INFORMATION
+     *  - Create
+     * 
+     * 
+     */
+
+     public TireBrand createTireBrand(TireBrand tireBrand) {
         return tireBrandRepository.save(tireBrand);
-    }
-
-    public List<TireBrand> getAllTireBrands() {
-        return tireBrandRepository.findAll();
-    }
-
-    public TireBrand getTireBrandById(Long id) {
-        return tireBrandRepository.findById(id).orElse(null);
-    }
-
-    public void deleteTireBrand(Long id) {
-        tireBrandRepository.deleteById(id);
-    }
-    */
+     }
 }
 
