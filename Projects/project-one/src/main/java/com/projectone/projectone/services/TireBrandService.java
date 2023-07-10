@@ -50,5 +50,14 @@ public class TireBrandService {
      public TireBrand createTireBrand(TireBrand tireBrand) {
         return tireBrandRepository.save(tireBrand);
      }
+
+     public TireBrand updateTireBrand(TireBrand tireBrand) {
+        return tireBrandRepository.save(tireBrand);
+    }
+
+        // Delete a tire brand
+    public void deleteTireBrand(TireBrand tireBrand) {
+        tireBrandRepository.delete(tireBrand);
+    }
 }
 
