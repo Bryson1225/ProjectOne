@@ -10,6 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/*
+ * Class: Inventory.java
+ * Function: This class represents the Inventory entity within my database.
+ */
+
 @Entity
 @Table(name = "INVENTORY")
 public class Inventory {

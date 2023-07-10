@@ -9,6 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/*
+ * Class: TireType.java
+ * Function: This class represents the Tire_type entity within my database.
+ */
+
 @Entity
 @Table(name = "TIRETYPE")
 public class TireType {

@@ -10,11 +10,6 @@ import javax.persistence.Table;
 /*
  * Class: Warehouse.java
  * Function: This class represents the Warehouse entity within my database.
- * 
- * Instance Variables / Table Column Name
- *  - warehouseId / warehouse_id
- *  - warehouseName / warehouse_name
- *  - maximumCapacity / maximum_capacit
  */
 
 @Entity
