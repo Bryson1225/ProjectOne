@@ -6,7 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.projectone.projectone.models.Inventory;
 import com.projectone.projectone.models.TireType;
@@ -59,5 +61,19 @@ public class InventoryController {
     public ResponseEntity<List<Inventory>> getLowStockInventory() {
         List<Inventory> inventory = inventoryService.findLowStockInventory();
         return new ResponseEntity<>(inventory, HttpStatus.OK);
+    }
+
+    /*
+     * ADDING Methods are below
+     */
+
+    @PutMapping("/{warehouseId}/{tireTypeId}")
+    public ResponseEntity<Inventory> updateInventoryQuantity(
+            @PathVariable Warehouse warehouseId,
+            @PathVariable TireType tireTypeId,
+            @RequestParam Integer quantity
+    ) {
+        Inventory updatedInventory = inventoryService.updateInventoryQuantity(warehouseId, tireTypeId, quantity);
+        return new ResponseEntity<>(updatedInventory, HttpStatus.OK);
     }
 }

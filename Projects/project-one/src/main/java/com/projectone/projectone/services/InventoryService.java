@@ -36,8 +36,24 @@ public class InventoryService {
 
     public List<Inventory> findLowStockInventory() {
         // Define low stock threshold
-        int lowStockThreshold = 10;
+        int lowStockThreshold = 100;
         return inventoryRepository.findByQuantityLessThan(lowStockThreshold);
     }
+
+    /*
+     * ADDING methods are below
+     * 
+     * 
+     */
+
+     public Inventory updateInventoryQuantity(Warehouse warehouseId, TireType tireTypeId, Integer quantity) {
+        Inventory inventory = inventoryRepository.findByWarehouseIdAndTireTypeId(warehouseId, tireTypeId);
+        if (inventory != null) {
+            inventory.setQuantity(inventory.getQuantity() + quantity);
+            return inventoryRepository.save(inventory);
+        }
+        return null;
+    }
+
 }
 
