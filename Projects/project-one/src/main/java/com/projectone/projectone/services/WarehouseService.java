@@ -54,5 +54,15 @@ public class WarehouseService {
         return warehouseRepository.save(warehouse);
     }
 
+    // Update an existing warehouse
+    public Warehouse updateWarehouse(Warehouse warehouse) {
+            return warehouseRepository.save(warehouse);
+    }
+
+        // Delete a warehouse
+    public void deleteWarehouse(Warehouse warehouse) {
+        warehouseRepository.delete(warehouse);
+    }
+
 }
 
