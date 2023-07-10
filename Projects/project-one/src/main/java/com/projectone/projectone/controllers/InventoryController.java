@@ -15,6 +15,8 @@ import com.projectone.projectone.models.TireType;
 import com.projectone.projectone.models.Warehouse;
 import com.projectone.projectone.services.InventoryService;
 
+// Controller class for my inventory
+
 @RestController
 @RequestMapping("/inventory")
 public class InventoryController {
@@ -22,24 +24,32 @@ public class InventoryController {
     @Autowired
     InventoryService inventoryService;
 
+     ////////////////////////////
+    // **** GET REQUESTS **** //
+   ////////////////////////////
+
+    // Get the whole inventory
     @GetMapping
     public ResponseEntity<List<Inventory>> getInventory() {
         List<Inventory> inventory = inventoryService.getInventory();
         return new ResponseEntity<List<Inventory>>(inventory, HttpStatus.OK);
     }
 
+    // Get the inventory at a specifc warehouse
     @GetMapping("/warehouse/{warehouseId}")
     public ResponseEntity<List<Inventory>> getInventoryByWarehouse(@PathVariable Warehouse warehouseId) {
         List<Inventory> inventory = inventoryService.findInventoryByWarehouseId(warehouseId);
         return new ResponseEntity<>(inventory, HttpStatus.OK);
     }
 
+    // Get the inventory information on a tire type given its id
     @GetMapping("/tire-type/{tireTypeId}")
     public ResponseEntity<List<Inventory>> getInventoryByTireType(@PathVariable TireType tireTypeId) {
         List<Inventory> inventory = inventoryService.findInventoryByTireType(tireTypeId);
         return new ResponseEntity<>(inventory, HttpStatus.OK);
     }
 
+    // Get the inventory of a tire type (with its id) at a given warehouse
     @GetMapping("/warehouse/{warehouseId}/tire-type/{tireTypeId}")
     public ResponseEntity<Inventory> getInventoryByWarehouseAndTireType(
             @PathVariable Warehouse warehouseId, @PathVariable TireType tireTypeId) {
@@ -51,22 +61,25 @@ public class InventoryController {
         }
     }
 
+    // Get all available inventory
     @GetMapping("/available")
     public ResponseEntity<List<Inventory>> getAvailableInventory() {
         List<Inventory> inventory = inventoryService.findAvailableInventory();
         return new ResponseEntity<>(inventory, HttpStatus.OK);
     }
 
+    // Get inventory that is low and may need restocked
     @GetMapping("/low-stock")
     public ResponseEntity<List<Inventory>> getLowStockInventory() {
         List<Inventory> inventory = inventoryService.findLowStockInventory();
         return new ResponseEntity<>(inventory, HttpStatus.OK);
     }
 
-    /*
-     * ADDING Methods are below
-     */
+     //////////////////////////////////
+    // **** MODIFYINH REQUESTS **** //
+   //////////////////////////////////
 
+    // Modify the inventory at a certain warehouse
     @PutMapping("/{warehouseId}/{tireTypeId}")
     public ResponseEntity<Inventory> updateInventoryQuantity(
             @PathVariable Warehouse warehouseId,

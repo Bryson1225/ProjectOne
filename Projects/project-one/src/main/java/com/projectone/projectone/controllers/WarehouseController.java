@@ -12,18 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.projectone.projectone.models.Warehouse;
 import com.projectone.projectone.services.WarehouseService;
 
-
-/*
- * Class: WarehouseController.java
- * Function: This is the controller class for our Warehouse.java
- * 
- * Instance Variables
- *  - warehouseService - Reference to the service class.
- */
+// Controller class for my warehouse
 
 @RestController
 @RequestMapping("/warehouses")
@@ -32,37 +24,34 @@ public class WarehouseController {
     @Autowired
     WarehouseService warehouseService;
 
+     ////////////////////////////
+    // **** GET REQUESTS **** //
+   ////////////////////////////
 
-    /**
-     * GET SECTION
-     *  - AllWarehouses
-     *  - ById
-     *  - warehouseName
-     */
-
-    @GetMapping // Grab all warehouses
+    // Get all warehouses
+    @GetMapping
     public ResponseEntity<List<Warehouse>> findAllWarehouses() {
         List<Warehouse> warehouses = warehouseService.findAllWarehouses();
         return new ResponseEntity<List<Warehouse>>(warehouses, HttpStatus.OK);
     }
 
-    @GetMapping("/warehouse/{warehouseId}") // Single warehouse with an Id
+    // Get a warehouse with an id
+    @GetMapping("/warehouse/{warehouseId}")
     public ResponseEntity<Warehouse> findWarehouseById(@PathVariable int warehouseId) {
         Warehouse warehouse = warehouseService.findWarehouseById(warehouseId);
         return new ResponseEntity<Warehouse>(warehouse, HttpStatus.OK);
     }
 
-    @GetMapping("/name/{warehouseName}") // Get a warehouse by its name
+    // Get a warehouse by its name
+    @GetMapping("/name/{warehouseName}")
     public ResponseEntity<Warehouse> findBywarehouseName(@PathVariable String warehouseName) {
         Warehouse warehouse = warehouseService.findBywarehouseName(warehouseName);
         return new ResponseEntity<Warehouse>(warehouse, HttpStatus.OK);
     }
 
-    /**
-     * ADDING INFORMATION SECTION
-     *  - POST
-     *      - create
-     */
+     //////////////////////////////////
+    // **** MODIFYINH REQUESTS **** //
+   //////////////////////////////////f
 
     // Creating a new warehouse entity
     @PostMapping("/create-warehouse") // Create a newwarehouse
@@ -84,8 +73,7 @@ public class WarehouseController {
         return new ResponseEntity<>(newWarehouse, HttpStatus.OK);
     }
 
-        // Delete a warehouse by ID
-        // Need to make sure that the warehouse is empty.
+    // Delete a warehouse by ID
     @DeleteMapping("/warehouse/{warehouseId}")
     public ResponseEntity<Void> deleteWarehouse(@PathVariable int warehouseId) {
         Warehouse warehouse = warehouseService.findWarehouseById(warehouseId);

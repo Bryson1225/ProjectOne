@@ -7,17 +7,20 @@ import com.projectone.projectone.repositories.TireBrandRepository;
 import java.util.List;
 import java.util.Optional;
 
+/*
+ * Service class for my tire brands
+ */
+
 @Service
 public class TireBrandService {
     @Autowired
     TireBrandRepository tireBrandRepository;
 
-    /*
-     * GET REQUESTS
-     *  - All
-     */
+     ////////////////////////////
+    // **** GET REQUESTS **** //
+   ////////////////////////////
 
-    // Return a list of all tire brands currently in the DB
+    // Find all the tire brands
     public List<TireBrand> findAllTireBrands() {
         return tireBrandRepository.findAll();
     }
@@ -40,22 +43,21 @@ public class TireBrandService {
         return null;
     }
 
-    /*
-     * ADDING INFORMATION
-     *  - Create
-     * 
-     * 
-     */
+     //////////////////////////////////
+    // **** MODIFYINH REQUESTS **** //
+   //////////////////////////////////
 
+    // Create a new tire brand
      public TireBrand createTireBrand(TireBrand tireBrand) {
         return tireBrandRepository.save(tireBrand);
      }
 
+    // Update an existing tire brand
      public TireBrand updateTireBrand(TireBrand tireBrand) {
         return tireBrandRepository.save(tireBrand);
     }
 
-        // Delete a tire brand
+    // Delete a tire brand
     public void deleteTireBrand(TireBrand tireBrand) {
         tireBrandRepository.delete(tireBrand);
     }

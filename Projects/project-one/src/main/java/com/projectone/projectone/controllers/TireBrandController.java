@@ -1,7 +1,6 @@
 package com.projectone.projectone.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.projectone.projectone.models.TireBrand;
 import com.projectone.projectone.services.TireBrandService;
+
+// Controller class for my tire brands
 
 @RestController
 @RequestMapping("/tire-brands")
@@ -24,35 +24,36 @@ public class TireBrandController {
     @Autowired
     TireBrandService tireBrandService;
 
-    /*
-     * GET SECTION
-     *  - getAll
-     */
+     ////////////////////////////
+    // **** GET REQUESTS **** //
+   ////////////////////////////
 
+    // Get all tire brandss
     @GetMapping
     public ResponseEntity<List<TireBrand>> findAllTireBrands() {
         List<TireBrand> brands = tireBrandService.findAllTireBrands();
         return new ResponseEntity<List<TireBrand>>(brands, HttpStatus.OK);
     }
 
+    // Get a tire brand with an id
     @GetMapping("/tire-brand/{brandId}")
     public ResponseEntity<TireBrand> findTireBrandById(@PathVariable int brandId) {
         TireBrand brand = tireBrandService.findTireBrandById(brandId);
         return new ResponseEntity<TireBrand>(brand, HttpStatus.OK);
     }
 
+    // Get a tire brand with its name
     @GetMapping("/tire-brand-name/{brandName}")
     public ResponseEntity<TireBrand> findTireBrandByName(@PathVariable String brandName) {
         TireBrand brand = tireBrandService.findTireBrandByName(brandName);
         return new ResponseEntity<TireBrand>(brand, HttpStatus.OK);
     }
 
-    /*
-     * ADDING INFORMATION
-     *  - Create
-     * 
-     */
+     //////////////////////////////////
+    // **** MODIFYINH REQUESTS **** //
+   //////////////////////////////////
 
+    // Create a new tire brand
      @PostMapping("/create-tireBrand")
      public ResponseEntity<TireBrand> createTireBrand(@RequestBody TireBrand tireBrand) {
          TireBrand newTireBrand = tireBrandService.createTireBrand(tireBrand);
@@ -71,7 +72,7 @@ public class TireBrandController {
         return new ResponseEntity<>(updatedBrand, HttpStatus.OK);
     }
 
-        // Delete a tire brand by ID
+    // Delete a tire brand by ID
     @DeleteMapping("/delete-tireBrand/{brandId}")
     public ResponseEntity<Void> deleteTireBrand(@PathVariable int brandId) {
         TireBrand brand = tireBrandService.findTireBrandById(brandId);

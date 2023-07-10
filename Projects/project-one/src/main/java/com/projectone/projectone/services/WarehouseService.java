@@ -7,17 +7,18 @@ import com.projectone.projectone.repositories.WarehouseRepository;
 import java.util.List;
 import java.util.Optional;
 
+/*
+ * Service class for my warehouses
+ */
+
 @Service
 public class WarehouseService {
     @Autowired
     WarehouseRepository warehouseRepository;
 
-    /*
-     * GET INFORMATION
-     *  - All
-     *  - ById
-     *  - ByName
-     */
+     ////////////////////////////
+    // **** GET REQUESTS **** //
+   ////////////////////////////
 
      // Returns a list of every warehouse
     public List<Warehouse> findAllWarehouses() {
@@ -42,12 +43,9 @@ public class WarehouseService {
         return null;
     }
 
-    /*
-     * POSTING / PUTTING
-     *  - create warehouse
-     * 
-     * 
-     */
+     //////////////////////////////////
+    // **** MODIFYINH REQUESTS **** //
+   //////////////////////////////////
 
     // Creates a warehouse
     public Warehouse createWarehouse(Warehouse warehouse) {
@@ -59,7 +57,7 @@ public class WarehouseService {
             return warehouseRepository.save(warehouse);
     }
 
-        // Delete a warehouse
+    // Delete a warehouse
     public void deleteWarehouse(Warehouse warehouse) {
         warehouseRepository.delete(warehouse);
     }
