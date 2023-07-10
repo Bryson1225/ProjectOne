@@ -7,6 +7,7 @@ import com.projectone.projectone.models.TireType;
 import com.projectone.projectone.repositories.TireTypeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TireTypeService {
@@ -16,27 +17,38 @@ public class TireTypeService {
     public List<TireType> findAllTireTypes() {
         return tireTypeRepository.findAll();
     }
-/*
-    @Autowired
-    public TireTypeService(TireTypeRepository tireTypeRepository) {
-        this.tireTypeRepository = tireTypeRepository;
+
+    public TireType findTireTypeById(Integer id) {
+        Optional<TireType> tireTypeOptional = tireTypeRepository.findById(id);
+        return tireTypeOptional.orElse(null);
     }
 
-    public TireType saveTireType(TireType tireType) {
+    public TireType createTireType(TireType tireType) {
         return tireTypeRepository.save(tireType);
     }
 
-    public List<TireType> getAllTireTypes() {
-        return tireTypeRepository.findAll();
+    public TireType updateTireType(Integer id, TireType tireType) {
+        Optional<TireType> tireTypeOptional = tireTypeRepository.findById(id);
+        if (tireTypeOptional.isPresent()) {
+            TireType existingTireType = tireTypeOptional.get();
+            existingTireType.setTireTypeName(tireType.getTireTypeName());
+            existingTireType.setDescription(tireType.getDescription());
+            existingTireType.setPrice(tireType.getPrice());
+            existingTireType.setTireBrand(tireType.getTireBrand());
+            return tireTypeRepository.save(existingTireType);
+        } else {
+            return null;
+        }
     }
 
-    public TireType getTireTypeById(Long id) {
-        return tireTypeRepository.findById(id).orElse(null);
+    public boolean deleteTireType(Integer id) {
+        if (tireTypeRepository.existsById(id)) {
+            tireTypeRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void deleteTireType(Long id) {
-        tireTypeRepository.deleteById(id);
-    }
-    */
 }
 
