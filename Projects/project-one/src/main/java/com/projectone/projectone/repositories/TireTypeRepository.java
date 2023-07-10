@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.projectone.projectone.models.TireType;
 
 @Repository
-public interface TireTypeRepository extends JpaRepository<TireType, Long> {
+public interface TireTypeRepository extends JpaRepository<TireType, Integer> {
 
 }

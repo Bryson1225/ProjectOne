@@ -5,7 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,12 +22,49 @@ import com.projectone.projectone.services.TireTypeService;
 public class TireTypeController {
     
     @Autowired
-    TireTypeService typeService;
+    TireTypeService tireTypeService;
 
     @GetMapping
-    public ResponseEntity<List<TireType>> findAllWarehouses() {
-        List<TireType> types = typeService.findAllTireTypes();
+    public ResponseEntity<List<TireType>> findAllTireTypes() {
+        List<TireType> types = tireTypeService.findAllTireTypes();
         return new ResponseEntity<List<TireType>>(types, HttpStatus.OK);
     }
+
+    @GetMapping("/tire-type/{id}")
+    public ResponseEntity<TireType> getTireTypeById(@PathVariable Integer id) {
+        TireType tireType = tireTypeService.findTireTypeById(id);
+        if (tireType != null) {
+            return new ResponseEntity<>(tireType, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<TireType> createTireType(@RequestBody TireType tireType) {
+        TireType createdTireType = tireTypeService.createTireType(tireType);
+        return new ResponseEntity<>(createdTireType, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TireType> updateTireType(@PathVariable Integer id, @RequestBody TireType tireType) {
+        TireType updatedTireType = tireTypeService.updateTireType(id, tireType);
+        if (updatedTireType != null) {
+            return new ResponseEntity<>(updatedTireType, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTireType(@PathVariable Integer id) {
+        boolean deleted = tireTypeService.deleteTireType(id);
+        if (deleted) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 }

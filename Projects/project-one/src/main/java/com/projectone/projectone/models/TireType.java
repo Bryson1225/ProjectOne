@@ -1,5 +1,6 @@
 package com.projectone.projectone.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,10 +15,16 @@ public class TireType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tireTypeId;
+    @Column(name = "tire_type_id")
+    private Integer tireTypeId;
 
+    @Column(name = "tire_type_name")
     private String tireTypeName;
+
+    @Column
     private String description;
+
+    @Column
     private Double price;
 
     @ManyToOne
@@ -27,19 +34,18 @@ public class TireType {
     public TireType() {
     }
 
-    public TireType(Long tireTypeId, String tireTypeName, String description, Double price, TireBrand tireBrand) {
-        this.tireTypeId = tireTypeId;
+    public TireType(String tireTypeName, String description, Double price, TireBrand tireBrand) {
         this.tireTypeName = tireTypeName;
         this.description = description;
         this.price = price;
         this.tireBrand = tireBrand;
     }
 
-    public Long getTireTypeId() {
+    public Integer getTireTypeId() {
         return tireTypeId;
     }
 
-    public void setTireTypeId(Long tireTypeId) {
+    public void setTireTypeId(Integer tireTypeId) {
         this.tireTypeId = tireTypeId;
     }
 
