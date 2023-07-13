@@ -6,6 +6,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,6 +22,7 @@ import javax.persistence.Table;
 public class Inventory {
 
     @EmbeddedId
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private InventoryId id;
 
@@ -134,32 +137,27 @@ public class Inventory {
     public static class InventoryId implements Serializable {
 
         @Column(name = "warehouse_id")
-        private Long warehouseId;
+        private Integer warehouseId;
 
         @Column(name = "tire_type_id")
-        private Long tireTypeId;
+        private Integer tireTypeId;
 
         public InventoryId() {
         }
 
-        public InventoryId(Long warehouseId, Long tireTypeId) {
-            this.warehouseId = warehouseId;
-            this.tireTypeId = tireTypeId;
-        }
-
-        public Long getWarehouseId() {
+        public Integer getWarehouseId() {
             return warehouseId;
         }
 
-        public void setWarehouseId(Long warehouseId) {
+        public void setWarehouseId(Integer warehouseId) {
             this.warehouseId = warehouseId;
         }
 
-        public Long getTireTypeId() {
+        public Integer getTireTypeId() {
             return tireTypeId;
         }
 
-        public void setTireTypeId(Long tireTypeId) {
+        public void setTireTypeId(Integer tireTypeId) {
             this.tireTypeId = tireTypeId;
         }
 

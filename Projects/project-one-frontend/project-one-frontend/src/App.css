@@ -1,42 +1,65 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+  background-color: #e5eaf5;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.warehouse-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.table-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-container {
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.warehouse-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
-.card {
-  padding: 2em;
+.warehouse-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 3rem;
+  width: 90%;
+}
+.warehouse-details table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #6b6a6a;
 }
 
-.read-the-docs {
-  color: #888;
+.warehouse-details th,
+.warehouse-details td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.warehouse-details td {
+  font-size: 1.2rem;
+}
+
+.warehouse-details th {
+  background-color: #f2f2f2;
+  font-size: 1.5rem;
+}
+
+.warehouse-details tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.warehouse-details tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.warehouse-details tbody tr:hover {
+  background-color: #f5f5f5;
 }

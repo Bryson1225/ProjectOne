@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +22,7 @@ import com.projectone.projectone.services.InventoryService;
 
 @RestController
 @RequestMapping("/inventory")
-@CrossOrigin
+@CrossOrigin("http://localhost:5173")
 public class InventoryController {
 
     @Autowired
@@ -34,6 +36,7 @@ public class InventoryController {
     @GetMapping
     public ResponseEntity<List<Inventory>> getInventory() {
         List<Inventory> inventory = inventoryService.getInventory();
+        System.out.println(inventory);
         return new ResponseEntity<List<Inventory>>(inventory, HttpStatus.OK);
     }
 
@@ -91,4 +94,15 @@ public class InventoryController {
         Inventory updatedInventory = inventoryService.updateInventoryQuantity(warehouseId, tireTypeId, quantity);
         return new ResponseEntity<>(updatedInventory, HttpStatus.OK);
     }
+
+    @PostMapping("/create-inventory/{warehouseId}/{tireTypeId}")
+    public ResponseEntity<Inventory> createInventory(
+        @PathVariable Warehouse warehouseId,
+        @PathVariable TireType tireTypeId,
+        @RequestBody Inventory inventory
+    ) {
+        Inventory createdInventory = inventoryService.createInventory(warehouseId, tireTypeId, inventory);
+        return new ResponseEntity<>(createdInventory, HttpStatus.CREATED);
+    }
 }
+

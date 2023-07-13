@@ -1,30 +1,23 @@
 # Spring where to get this data from
 spring:
     datasource:
-        url: jdbc:h2:mem:warehousesdb           # Name your DB here - lets your DB persist between runs if you put a filepath jdbc:h2:file:[path]
-        username: sa                        # Default username for h2
-        password:                           # Not necessary for an in-memory DB [OPTIONAL]
-        driverClassName: org.h2.Driver      # JDBC uses this to connect to the DB
-        #url: jdbc:postgresql://localhost:5432/movies --> Connect to DB in PostGres
-        #username: postgres
-        #password: password --> Make sure to get rid of the jpa stuff. Add a depency in POM for Postgres
+        #url: jdbc:h2:mem:warehousesdb           # Name your DB here - lets your DB persist between runs if you put a filepath jdbc:h2:file:[path]
+        #username: sa                        # Default username for h2
+        #password:                           # Not necessary for an in-memory DB [OPTIONAL]
+        #driverClassName: org.h2.Driver      # JDBC uses this to connect to the DB
+        url: jdbc:postgresql://localhost:5432/ProjectOne
+        username: postgres
+        password: Momcorrina10!
         #<dependency>
         #    <groupId>org.postgresql</groupId>
         #    <artifactId>postgresql</artifactId>
         #    <scope>runtime</scope>
         #</dependency>
-    jpa:
-        database-platform: org.hibernate.dialect.H2Dialect # Tells spring data jpa that we are using the H2 Database
-        defer-datasource-initialization: true              # Tell JPA to wait until hibernate has loaded, before loading the data
+    #jpa:
+    #    database-platform: org.hibernate.dialect.H2Dialect # Tells spring data jpa that we are using the H2 Database
+    #    defer-datasource-initialization: true              # Tell JPA to wait until hibernate has loaded, before loading the data
     output:
         ansi:
             enabled: ALWAYS
-server:
-    port: 5500
-# This sets your logging level, the defaul is INFO
-    # If it is defaulting to info, and you try to send a debug log, will only receive INFO and higher.
-            # Debug messages will not appear
-#logging:
-#    level:
-#        com:
-#            skillstorm: debug               # sets the logging level for the entire package
+
+#--> Make sure to get rid of the jpa stuff. Add a depency in POM for Postgres

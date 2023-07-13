@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.projectone.projectone.models.TireBrand;
 import com.projectone.projectone.models.TireType;
 import com.projectone.projectone.services.TireTypeService;
 
@@ -46,6 +48,13 @@ public class TireTypeController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    // Get all tire types for a specific brand
+    @GetMapping("/tire-brand/{tireBrand}")
+    public ResponseEntity<List<TireType>> findTireTypesByBrand(@PathVariable TireBrand tireBrand) {
+        List<TireType> types = tireTypeService.findTireTypesByBrand(tireBrand);
+        return new ResponseEntity<List<TireType>>(types, HttpStatus.OK);
     }
 
      //////////////////////////////////

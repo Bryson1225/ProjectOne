@@ -2,6 +2,8 @@ package com.projectone.projectone.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.projectone.projectone.models.TireBrand;
 import com.projectone.projectone.models.TireType;
 import com.projectone.projectone.repositories.TireTypeRepository;
 import java.util.List;
@@ -29,6 +31,10 @@ public class TireTypeService {
     public TireType findTireTypeById(Integer id) {
         Optional<TireType> tireTypeOptional = tireTypeRepository.findById(id);
         return tireTypeOptional.orElse(null);
+    }
+
+    public List<TireType> findTireTypesByBrand(TireBrand tireBrand) {
+        return tireTypeRepository.findByTireBrand(tireBrand);
     }
 
      //////////////////////////////////
