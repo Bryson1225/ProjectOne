@@ -1,0 +1,65 @@
+body {
+  background-color: #e5eaf5;
+}
+
+.warehouse-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.table-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.app-container {
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+}
+.warehouse-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.warehouse-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 3rem;
+  width: 90%;
+}
+.warehouse-details table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #6b6a6a;
+}
+
+.warehouse-details th,
+.warehouse-details td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.warehouse-details td {
+  font-size: 1.2rem;
+}
+
+.warehouse-details th {
+  background-color: #f2f2f2;
+  font-size: 1.5rem;
+}
+
+.warehouse-details tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.warehouse-details tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.warehouse-details tbody tr:hover {
+  background-color: #f5f5f5;
+}

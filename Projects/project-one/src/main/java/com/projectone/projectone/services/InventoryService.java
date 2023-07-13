@@ -62,10 +62,20 @@ public class InventoryService {
     public Inventory updateInventoryQuantity(Warehouse warehouseId, TireType tireTypeId, Integer quantity) {
         Inventory inventory = inventoryRepository.findByWarehouseIdAndTireTypeId(warehouseId, tireTypeId);
         if (inventory != null) {
-            inventory.setQuantity(inventory.getQuantity() + quantity);
+            inventory.setQuantity(inventory.getQuantity() - quantity);
             return inventoryRepository.save(inventory);
         }
         return null;
+    }
+
+    public Inventory createInventory(Warehouse warehouseId, TireType tireTypeId, Inventory inventory) {
+        Inventory oldInventory = inventoryRepository.findByWarehouseIdAndTireTypeId(warehouseId, tireTypeId);
+        if (oldInventory != null) {
+            inventory.setQuantity(inventory.getQuantity() + oldInventory.getQuantity());
+            return inventoryRepository.save(inventory);
+        } else {
+            return inventoryRepository.save(inventory);
+        }
     }
 
 }
