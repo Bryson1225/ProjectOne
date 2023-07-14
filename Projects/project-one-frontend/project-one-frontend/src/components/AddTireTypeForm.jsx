@@ -45,7 +45,6 @@ const AddTireTypeForm = () => {
 
     try {
       const response = await axios.post("http://localhost:8080/tire-types", newTireType);
-      console.log("Tire type added:", response.data);
 
       // Clear form inputs
       setSelectedBrandId("");

@@ -17,7 +17,6 @@ const AddTireBrandForm = ({ onTireBrandAdded }) => {
 
     try {
       const response = await axios.post("http://localhost:8080/tire-brands/create-tireBrand", newTireBrand);
-      console.log("Tire brand added:", response.data);
 
       // Clear form input
       setBrandName("");

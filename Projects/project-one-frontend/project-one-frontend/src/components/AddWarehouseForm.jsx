@@ -18,8 +18,6 @@ const AddWarehouseForm = ({ onWarehouseAdded }) => {
       setWarehouseName("");
       setMaximumCapacity("");
 
-      // Handle success
-      console.log("Warehouse added:", response.data);
     } catch (error) {
       console.error("Error adding warehouse:", error);
     }

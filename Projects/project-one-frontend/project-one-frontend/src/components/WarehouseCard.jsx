@@ -1,9 +1,10 @@
 // WarehouseCard.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, CardContent, Typography, Button } from "@mui/material";
 
 const WarehouseCard = ({ warehouse, expanded, onExpand }) => {
+
   const handleExpand = () => {
     onExpand(warehouse); // Pass the warehouse object directly
   };

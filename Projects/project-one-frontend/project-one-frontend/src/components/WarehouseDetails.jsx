@@ -4,9 +4,11 @@ import axios from "axios";
 
 const WarehouseDetails = ({ warehouse }) => {
   const [inventory, setInventory] = useState([]);
+  const [inventoryCount, setInventoryCount] = useState(0);
 
   useEffect(() => {
     fetchInventory();
+    fetchInventoryCount();
   }, [warehouse]); // Fetch inventory when the warehouse prop changes
 
   const fetchInventory = async () => {
@@ -20,9 +22,22 @@ const WarehouseDetails = ({ warehouse }) => {
     }
   };
 
+  const fetchInventoryCount = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/warehouses/${warehouse.warehouseId}/inventory-count`
+      );
+      const count = response.data;
+      setInventoryCount(count);
+    } catch (error) {
+      console.error("Error fetching inventory count:", error);
+    }
+  };
+
   return (
     <div className="warehouse-details">
       <h2>{warehouse.warehouseName} Inventory</h2>
+      <p>Inventory Count: {inventoryCount}</p>
       {inventory.length > 0 ? (
         <table>
         <thead>

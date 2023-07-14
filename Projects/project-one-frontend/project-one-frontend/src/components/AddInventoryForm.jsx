@@ -103,13 +103,7 @@ const AddInventoryForm = ({ onInventoryAdded }) => {
         }
       } catch (error) {
         console.error("Error adding item to inventory:", error);
-        // Handle error case here, display an error message, etc.
       }
-
-    // Send the newItem object to the backend API to add it to the inventory
-    // You can use axios or any other library for making the POST request
-
-    // Clear the form state or perform any other necessary actions
   };
 
   return (
