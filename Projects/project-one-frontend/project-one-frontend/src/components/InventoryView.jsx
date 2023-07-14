@@ -2,6 +2,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+/**
+ * 
+ * Class: InventoryView.jsx
+ *  -> Function: The inventory view lets the user see the entier inventory. Meaning
+ *      each item that is currently in the system and accessible.
+ */
+
 const InventoryView = ({ onInventoryAdded }) => {
   const [inventory, setInventory] = useState([]);
 
@@ -9,6 +16,7 @@ const InventoryView = ({ onInventoryAdded }) => {
     fetchInventory();
   }, [onInventoryAdded]);
 
+  // Using a get to actually view the entire inventory
   const fetchInventory = async () => {
     try {
       const response = await axios.get("http://localhost:8080/inventory");

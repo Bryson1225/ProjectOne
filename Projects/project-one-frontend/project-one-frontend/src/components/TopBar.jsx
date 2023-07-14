@@ -1,6 +1,12 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 
+/**
+ * 
+ * Class: TopBar.jsx
+ *  -> Function: Top navigation bar, holds the buttons to manage the database
+ */
+
 const TopBar = ({ onInventoryButtonClick, onAddItemsButtonClick, onAddWarehouseButtonClick, onAddTireTypeButtonClick, onAddTireBrandButtonClick, onModifyInventoryButtonClick }) => {
   return (
     <AppBar position="static">

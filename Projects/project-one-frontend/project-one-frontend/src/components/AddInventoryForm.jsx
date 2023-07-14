@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+/**
+ * 
+ * Class: AddInventoryForm.jsx
+ *  -> Function: This class displays a form for the user to add to the existing
+ *      inventory.
+ */
+
+
 const AddInventoryForm = ({ onInventoryAdded }) => {
     const [warehouses, setWarehouses] = useState([]);
     const [brands, setBrands] = useState([]);
@@ -14,6 +22,7 @@ const AddInventoryForm = ({ onInventoryAdded }) => {
     fetchWarehouses();
   }, []);
 
+  // Warehouses for the selection options
   const fetchWarehouses = async() => {
     try {
       const response = await axios.get("http://localhost:8080/warehouses");
@@ -23,6 +32,7 @@ const AddInventoryForm = ({ onInventoryAdded }) => {
     }
   };
 
+  // Brands for the selection options
   const fetchBrands = async (warehouseId) => {
     try {
       const response = await axios.get(
@@ -34,6 +44,7 @@ const AddInventoryForm = ({ onInventoryAdded }) => {
     }
   };
 
+  // Getting associated tire types given a brand for the selection options
   const fetchTypesByBrand = async (brandId) => {
     try {
       const response = await axios.get(
@@ -45,6 +56,7 @@ const AddInventoryForm = ({ onInventoryAdded }) => {
     }
   };
 
+  // If user changes the warehouse, need to reset selection options
   const handleWarehouseChange = (event) => {
     const selectedWarehouseId = event.target.value;
     setSelectedWarehouseId(selectedWarehouseId);
@@ -55,6 +67,7 @@ const AddInventoryForm = ({ onInventoryAdded }) => {
     fetchBrands(selectedWarehouseId);
   };
 
+  // If user changes the brand, need to reset selection options
   const handleBrandChange = (event) => {
     const selectedBrandId = event.target.value;
     setSelectedBrandId(selectedBrandId);
@@ -63,20 +76,22 @@ const AddInventoryForm = ({ onInventoryAdded }) => {
     fetchTypesByBrand(selectedBrandId);
   };
 
+  // If user changes the tire type, need to reset selection options
   const handleTypeChange = (event) => {
     setSelectedTypeId(event.target.value);
   };
 
+  // Last option, so don't need to reset
   const handleQuantityChange = (event) => {
     setQuantity(event.target.value);
   };
 
+  /**
+   * 
+   * Create a new inventory item, send the request to the correct mapping
+   */
   const handleAddItemFormSubmit = async (event) => {
     event.preventDefault();
-
-    // Retrieve the selected warehouse, tire brand, tire type, and quantity from the form state
-
-    // Create an object with the selected values
     const newItem = {
         quantity: selectedQuantity,
     };

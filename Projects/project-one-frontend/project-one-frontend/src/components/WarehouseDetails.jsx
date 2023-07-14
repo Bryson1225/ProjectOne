@@ -2,6 +2,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+/**
+ * Class: WarehouseDetails.jsx
+ *  -> Function: When you expand a warehouse card, this is the file that gets the extra
+ *      details. That warehouses inventory, and quantity.
+ */
+
 const WarehouseDetails = ({ warehouse }) => {
   const [inventory, setInventory] = useState([]);
   const [inventoryCount, setInventoryCount] = useState(0);
@@ -11,6 +17,7 @@ const WarehouseDetails = ({ warehouse }) => {
     fetchInventoryCount();
   }, [warehouse]); // Fetch inventory when the warehouse prop changes
 
+  // Get that warehouses inventory
   const fetchInventory = async () => {
     try {
       const response = await axios.get(
@@ -22,6 +29,7 @@ const WarehouseDetails = ({ warehouse }) => {
     }
   };
 
+  // Get the current fill level of that warehouse
   const fetchInventoryCount = async () => {
     try {
       const response = await axios.get(

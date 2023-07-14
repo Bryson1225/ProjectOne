@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+/**
+ * 
+ * Class: AddTireTypeForm.jsx
+ *  -> Function: Adding a new tire type to the database
+ */
+
 const AddTireTypeForm = () => {
   const [brands, setBrands] = useState([]);
   const [selectedBrandId, setSelectedBrandId] = useState("");
@@ -11,6 +17,7 @@ const AddTireTypeForm = () => {
     fetchBrands();
   }, []);
 
+  // Display brand options for selecting
   const fetchBrands = async () => {
     try {
       const response = await axios.get("http://localhost:8080/tire-brands");
@@ -20,18 +27,22 @@ const AddTireTypeForm = () => {
     }
   };
 
+  // Changing the brand results in needing to choose new options
   const handleBrandChange = (event) => {
     setSelectedBrandId(event.target.value);
   };
 
+  // Text box update
   const handleTypeNameChange = (event) => {
     setTypeName(event.target.value);
   };
 
+  // Text box update
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
 
+  // Submitting the form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 

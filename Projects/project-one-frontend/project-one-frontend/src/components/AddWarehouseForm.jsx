@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+/**
+ * 
+ * Class: AddWarehouseForm.jsx
+ *  -> Function: Adding a new warehouse to the database
+ */
+
 const AddWarehouseForm = ({ onWarehouseAdded }) => {
   const [warehouseName, setWarehouseName] = useState("");
   const [maximumCapacity, setMaximumCapacity] = useState("");
 
+  // For submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    // Send to the endpoint for posting
     try {
       const response = await axios.post("http://localhost:8080/warehouses/create-warehouse", {
         warehouseName,
