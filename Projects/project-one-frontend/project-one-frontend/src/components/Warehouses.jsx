@@ -10,6 +10,8 @@ import AddWarehouseForm from "./AddWarehouseForm";
 import AddTireTypeForm from "./AddTireTypeForm";
 import AddTireBrandForm from "./AddTireBrandForm";
 import ModifyInventoryForm from "./ModifyInventoryForm";
+import DeleteTireTypeForm from "./DeleteTireTypeForm";
+import DeleteTireBrandForm from "./DeleteTireBrandForm";
 import "../App.css";
 
 /**
@@ -26,6 +28,8 @@ const Warehouses = () => {
   const [showAddTireTypeForm, setShowAddTireTypeForm] = useState(false);
   const [showAddTireBrandForm, setShowAddTireBrandForm] = useState(false);
   const [showModifyInventoryForm, setModifyInventoryForm] = useState(false);
+  const [showDeleteTireTypeForm, setDeleteTireTypeForm] = useState(false);
+  const [showDeleteTireBrandForm, setDeleteTireBrandForm] = useState(false);
 
 
   useEffect(() => {
@@ -53,6 +57,8 @@ const Warehouses = () => {
       setShowAddTireTypeForm(false);
       setShowAddTireBrandForm(false);
       setModifyInventoryForm(false);
+      setDeleteTireTypeForm(false);
+      setDeleteTireBrandForm(false);
     }
   };
 
@@ -65,6 +71,8 @@ const Warehouses = () => {
     setShowAddWarehouseForm(false);
     setShowAddTireBrandForm(false);
     setModifyInventoryForm(false);
+    setDeleteTireTypeForm(false);
+    setDeleteTireBrandForm(false);
   }
 
   // Adding an item
@@ -75,6 +83,8 @@ const Warehouses = () => {
     setShowAddTireTypeForm(false);
     setShowAddTireBrandForm(false);
     setModifyInventoryForm(false);
+    setDeleteTireTypeForm(false);
+    setDeleteTireBrandForm(false);
     setShowAddItemsForm(!showAddItemsForm);
   }
 
@@ -86,6 +96,8 @@ const Warehouses = () => {
     setShowAddTireTypeForm(false);
     setShowAddTireBrandForm(false);
     setModifyInventoryForm(false);
+    setDeleteTireTypeForm(false);
+    setDeleteTireBrandForm(false);
     setShowAddWarehouseForm(!showAddWarehouseForm);
   }
 
@@ -97,6 +109,8 @@ const Warehouses = () => {
     setShowAddWarehouseForm(false);
     setShowAddTireBrandForm(false);
     setModifyInventoryForm(false);
+    setDeleteTireTypeForm(false);
+    setDeleteTireBrandForm(false);
     setShowAddTireTypeForm(!showAddTireTypeForm);
   };
 
@@ -108,6 +122,8 @@ const Warehouses = () => {
     setShowAddWarehouseForm(false);
     setShowAddTireTypeForm(false);
     setModifyInventoryForm(false);
+    setDeleteTireTypeForm(false);
+    setDeleteTireBrandForm(false);
     setShowAddTireBrandForm(!showAddTireBrandForm);
   };
 
@@ -119,8 +135,34 @@ const Warehouses = () => {
     setShowAddWarehouseForm(false);
     setShowAddTireTypeForm(false);
     setShowAddTireBrandForm(false);
+    setDeleteTireTypeForm(false);
+    setDeleteTireBrandForm(false);
     setModifyInventoryForm(!showModifyInventoryForm);
   };
+
+  const handleDeleteTireTypeButtonClick = () => {
+    setExpandedWarehouse(null);
+    setShowInventoryTable(true);
+    setShowAddItemsForm(false);
+    setShowAddWarehouseForm(false);
+    setShowAddTireTypeForm(false);
+    setShowAddTireBrandForm(false);
+    setModifyInventoryForm(false);
+    setDeleteTireBrandForm(false);
+    setDeleteTireTypeForm(true);
+  }
+
+  const handleDeleteTireBrandButtonClick = () => {
+    setExpandedWarehouse(null);
+    setShowInventoryTable(true);
+    setShowAddItemsForm(false);
+    setShowAddWarehouseForm(false);
+    setShowAddTireTypeForm(false);
+    setShowAddTireBrandForm(false);
+    setModifyInventoryForm(false);
+    setDeleteTireTypeForm(false);
+    setDeleteTireBrandForm(true);
+  }
 
   // Handle a new tire type
   const handleTireTypeAdded = async () => {
@@ -144,6 +186,13 @@ const Warehouses = () => {
   const handleTireBrandAdded = async () => {
     await fetchData(); // Refresh data after tire brand addition
   };
+  const handleDeleteTireType = async () => {
+    await fetchData();
+  }
+
+  const handleDeleteTireBrand = async () => {
+    await fetchData();
+  }
 
   const handleWarehouseDelete = async (deletedWarehouseId) => {
     try {
@@ -164,6 +213,8 @@ const Warehouses = () => {
                 onAddTireTypeButtonClick={handleAddTireTypeButtonClick}
                 onAddTireBrandButtonClick={handleAddTireBrandButtonClick}
                 onModifyInventoryButtonClick={handleModifyInventoryButtonClick}
+                onDeleteTireTypeButtonClick={handleDeleteTireTypeButtonClick}
+                onDeleteTireBrandButtonClick={handleDeleteTireBrandButtonClick}
             />
         </div>
 
@@ -189,6 +240,8 @@ const Warehouses = () => {
               {showAddTireTypeForm && <AddTireTypeForm onTireTypeAdded={handleTireTypeAdded} />}
               {showAddTireBrandForm && <AddTireBrandForm onTireBrandAdded={handleTireBrandAdded} />}
               {showModifyInventoryForm && <ModifyInventoryForm onInventoryModified={handleInventoryModified} />}
+              {showDeleteTireTypeForm && <DeleteTireTypeForm onTireTypeDeleted={handleDeleteTireType} />}
+              {showDeleteTireBrandForm && <DeleteTireBrandForm onTireBrandDeleted={handleDeleteTireBrand} />}
               {expandedWarehouse && (
                   <div className="warehouse-details">
                   <WarehouseDetails warehouse={expandedWarehouse} />
