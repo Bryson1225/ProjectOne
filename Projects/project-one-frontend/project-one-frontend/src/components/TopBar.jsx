@@ -7,7 +7,7 @@ import { AppBar, Toolbar, Typography, Button } from "@mui/material";
  *  -> Function: Top navigation bar, holds the buttons to manage the database
  */
 
-const TopBar = ({ onInventoryButtonClick, onAddItemsButtonClick, onAddWarehouseButtonClick, onAddTireTypeButtonClick, onAddTireBrandButtonClick, onModifyInventoryButtonClick }) => {
+const TopBar = ({ onInventoryButtonClick, onAddItemsButtonClick, onAddWarehouseButtonClick, onAddTireTypeButtonClick, onAddTireBrandButtonClick, onModifyInventoryButtonClick, onDeleteTireTypeButtonClick, onDeleteTireBrandButtonClick }) => {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -30,7 +30,13 @@ const TopBar = ({ onInventoryButtonClick, onAddItemsButtonClick, onAddWarehouseB
           Create TireBrand
         </Button>
         <Button color="inherit" onClick={onModifyInventoryButtonClick} style={{ margin: '0.5rem', outline: '1px solid black' }}>
-          Modify Inventory
+          Delete Inventory
+        </Button>
+        <Button color="inherit" onClick={onDeleteTireTypeButtonClick} style={{ margin: '0.5rem', outline: '1px solid black' }}>
+          Delete Tire Type
+        </Button>
+        <Button color="inherit" onClick={onDeleteTireBrandButtonClick} style={{ margin: '0.5rem', outline: '1px solid black' }}>
+          Delete Tire Brand
         </Button>
       </Toolbar>
     </AppBar>
