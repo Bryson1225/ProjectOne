@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+/**
+ * 
+ * Class: AddTireBrandForm.jsx
+ *  -> Function: This is for adding a new tire Brand to the database
+ */
+
 const AddTireBrandForm = ({ onTireBrandAdded }) => {
   const [brandName, setBrandName] = useState("");
 
+  // Just for the changing text box
   const handleBrandNameChange = (event) => {
     setBrandName(event.target.value);
   };
 
+  // On submit we go to the right and point
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -17,7 +25,6 @@ const AddTireBrandForm = ({ onTireBrandAdded }) => {
 
     try {
       const response = await axios.post("http://localhost:8080/tire-brands/create-tireBrand", newTireBrand);
-      console.log("Tire brand added:", response.data);
 
       // Clear form input
       setBrandName("");

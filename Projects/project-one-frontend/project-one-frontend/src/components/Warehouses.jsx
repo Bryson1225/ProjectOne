@@ -12,6 +12,11 @@ import AddTireBrandForm from "./AddTireBrandForm";
 import ModifyInventoryForm from "./ModifyInventoryForm";
 import "../App.css";
 
+/**
+ * Class: Warehouses.jsx
+ *  -> Function: This file houses and displays all of the components.
+ */
+
 const Warehouses = () => {
   const [warehouses, setWarehouses] = useState([]);
   const [expandedWarehouse, setExpandedWarehouse] = useState(null);
@@ -36,6 +41,7 @@ const Warehouses = () => {
     }
   };
 
+  // Exapnding a warehouse
   const handleExpandWarehouse = (warehouse) => {
     if (expandedWarehouse && expandedWarehouse.warehouseId === warehouse.warehouseId) {
       setExpandedWarehouse(null);
@@ -50,6 +56,7 @@ const Warehouses = () => {
     }
   };
 
+  // Displaying the inventory
   const handleInventoryButtonClick = () =>{
     setShowInventoryTable(!showInventoryTable);
     setExpandedWarehouse(null);
@@ -60,6 +67,7 @@ const Warehouses = () => {
     setModifyInventoryForm(false);
   }
 
+  // Adding an item
   const handleAddItemsButtonClick = () => {
     setShowAddWarehouseForm(false);
     setExpandedWarehouse(null);
@@ -70,6 +78,7 @@ const Warehouses = () => {
     setShowAddItemsForm(!showAddItemsForm);
   }
 
+  // Adding a warehouse
   const handleAddWarehouseButtonClick = () => {
     setExpandedWarehouse(null);
     setShowInventoryTable(false);
@@ -80,6 +89,7 @@ const Warehouses = () => {
     setShowAddWarehouseForm(!showAddWarehouseForm);
   }
 
+  // Adding a tire type
   const handleAddTireTypeButtonClick = () => {
     setExpandedWarehouse(null);
     setShowInventoryTable(false);
@@ -90,6 +100,7 @@ const Warehouses = () => {
     setShowAddTireTypeForm(!showAddTireTypeForm);
   };
 
+  // Adding a tire brand
   const handleAddTireBrandButtonClick = () => {
     setExpandedWarehouse(null);
     setShowInventoryTable(false);
@@ -100,6 +111,7 @@ const Warehouses = () => {
     setShowAddTireBrandForm(!showAddTireBrandForm);
   };
 
+  // Modifying the inventory
   const handleModifyInventoryButtonClick = () => {
     setExpandedWarehouse(null);
     setShowInventoryTable(true);
@@ -110,17 +122,22 @@ const Warehouses = () => {
     setModifyInventoryForm(!showModifyInventoryForm);
   };
 
+  // Handle a new tire type
   const handleTireTypeAdded = async () => {
     await fetchData(); // Refresh data after tire type addition
   };
 
+  // Inventory changed
   const handleInventoryModified = async () => {
     await fetchData(); // Refresh data after inventory modification
   };
 
+  // Adding a warehouse
   const handleWarehouseAdded = async () => {
     await fetchData(); // Refresh data after warehouse addition
   };
+
+  // Added inventory
   const handleInventoryAdded = async () => {
     await fetchData() // Refresh data after warehouse addition
   };

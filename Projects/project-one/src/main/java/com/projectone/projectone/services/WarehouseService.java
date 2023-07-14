@@ -2,6 +2,8 @@ package com.projectone.projectone.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.projectone.projectone.models.Inventory;
 import com.projectone.projectone.models.Warehouse;
 import com.projectone.projectone.repositories.WarehouseRepository;
 import java.util.List;
@@ -15,6 +17,9 @@ import java.util.Optional;
 public class WarehouseService {
     @Autowired
     WarehouseRepository warehouseRepository;
+
+    @Autowired
+    InventoryService inventoryService;
 
      ////////////////////////////
     // **** GET REQUESTS **** //
@@ -43,6 +48,18 @@ public class WarehouseService {
         return null;
     }
 
+    // Getting the inventory count for a specifc warehouse
+    public int getInventoryCountByWarehouseId(int warehouseId) {
+        List<Inventory> inventory = inventoryService.getInventory();
+        int count = 0;
+        for (Inventory item : inventory) {
+            if (item.getWarehouse().getWarehouseId() == warehouseId) {
+                count += item.getQuantity();
+            }
+        }
+        return count;
+    }
+
      //////////////////////////////////
     // **** MODIFYINH REQUESTS **** //
    //////////////////////////////////
@@ -61,6 +78,5 @@ public class WarehouseService {
     public void deleteWarehouse(Warehouse warehouse) {
         warehouseRepository.delete(warehouse);
     }
-
 }
 

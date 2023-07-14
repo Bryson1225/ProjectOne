@@ -1,13 +1,22 @@
 // WarehouseCard.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Card, CardContent, Typography, Button } from "@mui/material";
 
+/**
+ * Class: WarehouseCard.jsx
+ *  -> Function: Format for the warehouses view with cards, also gets the warehouses information
+ *      to display in the cards
+ */
+
 const WarehouseCard = ({ warehouse, expanded, onExpand }) => {
+
+  // Expanding a card displays more details on the selected warehouse
   const handleExpand = () => {
     onExpand(warehouse); // Pass the warehouse object directly
   };
 
+  // Deleting a warehouse
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:8080/warehouses/warehouse/${warehouse.warehouseId}`);

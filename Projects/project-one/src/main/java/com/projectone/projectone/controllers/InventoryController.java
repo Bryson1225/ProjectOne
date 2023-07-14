@@ -36,7 +36,6 @@ public class InventoryController {
     @GetMapping
     public ResponseEntity<List<Inventory>> getInventory() {
         List<Inventory> inventory = inventoryService.getInventory();
-        System.out.println(inventory);
         return new ResponseEntity<List<Inventory>>(inventory, HttpStatus.OK);
     }
 
@@ -95,6 +94,7 @@ public class InventoryController {
         return new ResponseEntity<>(updatedInventory, HttpStatus.OK);
     }
 
+    // Add a brand new inventory item to a given warehouse
     @PostMapping("/create-inventory/{warehouseId}/{tireTypeId}")
     public ResponseEntity<Inventory> createInventory(
         @PathVariable Warehouse warehouseId,

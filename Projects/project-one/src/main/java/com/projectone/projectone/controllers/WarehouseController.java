@@ -51,6 +51,13 @@ public class WarehouseController {
         return new ResponseEntity<Warehouse>(warehouse, HttpStatus.OK);
     }
 
+    // Get the inventory in a given warehouse
+    @GetMapping("/{warehouseId}/inventory-count")
+    public ResponseEntity<Integer> getInventoryCountByWarehouseId(@PathVariable int warehouseId) {
+        int inventoryCount = warehouseService.getInventoryCountByWarehouseId(warehouseId);
+        return new ResponseEntity<>(inventoryCount, HttpStatus.OK);
+    }
+
      //////////////////////////////////
     // **** MODIFYINH REQUESTS **** //
    //////////////////////////////////f

@@ -70,6 +70,16 @@ public class InventoryService {
 
     public Inventory createInventory(Warehouse warehouseId, TireType tireTypeId, Inventory inventory) {
         Inventory oldInventory = inventoryRepository.findByWarehouseIdAndTireTypeId(warehouseId, tireTypeId);
+        List<Inventory> temp = getInventory();
+        int count = 0;
+        for (Inventory item : temp) {
+            if (item.getWarehouse().getWarehouseId() == warehouseId.getWarehouseId()) {
+                count += item.getQuantity();
+            }
+        }
+        if (count + inventory.getQuantity() > warehouseId.getMaximumCapacity()) {
+            return null;
+        }
         if (oldInventory != null) {
             inventory.setQuantity(inventory.getQuantity() + oldInventory.getQuantity());
             return inventoryRepository.save(inventory);

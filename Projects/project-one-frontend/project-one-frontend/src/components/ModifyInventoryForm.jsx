@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+/**
+ * 
+ * Class: ModifyInventoryForm.jsx
+ *  -> Function: Used to change the current inventory in the database. This is where
+ *      the user will basically remove items or quantities.
+ */
+
 const ModifyInventoryForm = ({ onInventoryModified }) => {
   const [warehouses, setWarehouses] = useState([]);
   const [brands, setBrands] = useState([]);
@@ -14,6 +21,7 @@ const ModifyInventoryForm = ({ onInventoryModified }) => {
     fetchWarehouses();
   }, []);
 
+  // Get the warehouse options
   const fetchWarehouses = async () => {
     try {
       const response = await axios.get("http://localhost:8080/warehouses");
@@ -23,6 +31,7 @@ const ModifyInventoryForm = ({ onInventoryModified }) => {
     }
   };
 
+  // Get the tire brand options
   const fetchBrands = async (warehouseId) => {
     try {
       const response = await axios.get(
@@ -34,6 +43,7 @@ const ModifyInventoryForm = ({ onInventoryModified }) => {
     }
   };
 
+  // Get the associated types for the brand
   const fetchTypesByBrand = async (brandId) => {
     try {
       const response = await axios.get(
@@ -45,6 +55,7 @@ const ModifyInventoryForm = ({ onInventoryModified }) => {
     }
   };
 
+  // Changing warehouse means we need a new selection of options
   const handleWarehouseChange = (event) => {
     const selectedWarehouseId = event.target.value;
     setSelectedWarehouseId(selectedWarehouseId);
@@ -55,6 +66,7 @@ const ModifyInventoryForm = ({ onInventoryModified }) => {
     fetchBrands(selectedWarehouseId);
   };
 
+  // New brand, new options
   const handleBrandChange = (event) => {
     const selectedBrandId = event.target.value;
     setSelectedBrandId(selectedBrandId);
@@ -63,14 +75,17 @@ const ModifyInventoryForm = ({ onInventoryModified }) => {
     fetchTypesByBrand(selectedBrandId);
   };
 
+  // New type change
   const handleTypeChange = (event) => {
     setSelectedTypeId(event.target.value);
   };
 
+  // Setting the quantity
   const handleQuantityChange = (event) => {
     setSelectedQuantity(event.target.value);
   };
 
+  // Submitting the form
   const handleDeleteItemFormSubmit = async (event) => {
     event.preventDefault();
 
