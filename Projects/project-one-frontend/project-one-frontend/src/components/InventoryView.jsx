@@ -34,7 +34,7 @@ const InventoryView = ({ onInventoryAdded }) => {
           <thead>
             <tr>
               <th>[Brand]Tire Type</th>
-              <th>Warehouse Location</th>
+              <th>Warehouse Name</th>
               <th>Quantity</th>
             </tr>
           </thead>
